@@ -1,0 +1,66 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="scripts.js"></script>
+	
+	<link href='https://fonts.googleapis.com/css?family=Palanquin Dark' rel='stylesheet'>
+	<link href='https://fonts.googleapis.com/css?family=Palanquin' rel='stylesheet'>
+
+
+
+<style>
+        body {
+        background-image: url('/static/mountain.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+	font-family: 'Palanquin';
+}
+</style>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse" style="background-color: #06123d;">
+        <div class="container-fluid">
+        <div class="navbar-header">
+        <a class="navbar-brand" style="font-size: 37px; font-family: Palanquin Dark" href="/">LINKshrink</a>
+        </div>
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+	<li><a href='/loginpage'><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
+        </ul>
+        </div>
+</nav>
+
+{% block body %}
+{% if session ['logged_in'] %}
+<center>
+	<p style="font-size: 22px"> You're logged in already! </p>
+</center>
+{% else %}
+<form action="/signupToApp" method="POST">
+<center>	
+	<input type="name" name="name"  style="width: 300px; height: 50px; border: 2px; border-radius: 8px; padding: 3px; background-Color:rgba(255,255,255,0.7)" placeholder="Email Address">
+        <input type="username" name="username"  style="width: 300px; height: 50px; border: 2px; border-radius: 8px; padding: 3px; background-Color:rgba(255,255,255,0.7)" placeholder="Username">
+        <input type="password" name="password"  style="width: 300px; height: 50px; border: 2px; border-radius: 8px; padding: 3px; background-Color:rgba(255,255,255,0.7)" placeholder="Password">
+        <input type="submit"  style="width: 100px; height: 50px; border: 2px; border-radius: 8px; padding: 3px;" value="Sign Up">
+</center>
+</form>
+{% endif %}
+{% endblock %}
+
+
+
+{% if error %}
+<center>
+        <p style="font-size: 22px"> Error: {{ error }} </p>
+</center>
+{% endif %}
+
+

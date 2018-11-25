@@ -1,0 +1,80 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Palanquin Dark' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Palanquin' rel='stylesheet'>
+
+<style>
+        body {
+        background-image: url('/static/mountain.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        font-family: 'Palanquin';
+}
+</style>
+</head>
+<body>
+
+<script src="(( url_for('static', filename='script.js') }}"></script>
+
+
+<nav class="navbar navbar-inverse" style="background-color: #06123d;">
+        <div class="container-fluid">
+        <div class="navbar-header">
+        <a class="navbar-brand" style="font-size: 37px; font-family: Palanquin Dark" href="/">LINKshrink</a>
+        </div>
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        <li><a href='/logout'><span class="glyphicon glyphicon-user"></span> SIGN OUT</a></li>
+        </ul>
+
+        </div>
+</nav>
+
+
+
+{% if not url %}
+<form action="/shorten" method="POST">
+<div class="parent">
+        <div class "wrapper">
+                {% if not url %}
+                <input type="urllong" name="urllong" class="textmain"  placeholder="Enter long URL here.." style= "float: left;">
+                {% endif %}
+                <input type="submit" value="Shorten" class="submitbut" style= "float: right">
+        </div>
+</div>
+
+        <input type="text" name="text" class="shortbox" placeholder="Shrinked link will appear here..">
+</div>
+</form>
+{% endif %}
+
+{% if url %}
+<form action="/">
+<div class="parent">
+        <div class "wrapper">
+                <input type="urllong" name="urllong" class="textmain" value="{{ oldurl }}">
+                <input type="submit"  value="Again?" class="submitbut" style= "float: right">
+        </div>
+
+</div>
+        <input type="text" name="text" class="shortbox" value="{{ url }}">
+</form>
+{% endif %}
+
+{% if valid %}
+        <center>
+        <p style="font-size: 22px"> {{ valid }} </p>
+        </center>
+{% endif %}
+</body>
+</html>
+
